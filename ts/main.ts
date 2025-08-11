@@ -190,6 +190,62 @@ console.log(cancioncita.imprimirDetalles());
 
 
 // EJERCICIO 4
+class Cuenta{
+  nombre: string;
+  cantidad: number;
+  tipoDeCuenta: string;
+  numeroDeCuenta: number;
+
+  constructor(nombreParam: string, cantidadParam: number, tipoDeCuentaParam: string, numeroDeCuentaParam: number){
+    this.nombre = nombreParam;
+    this.cantidad = cantidadParam;
+    this.tipoDeCuenta = tipoDeCuentaParam;
+    this.numeroDeCuenta = numeroDeCuentaParam;
+  }
+
+  depositar(cantidadParam: number): string{
+    if (cantidadParam < 0 ){
+      return "El monto a depositar no puede ser negativo";
+    } else{
+      if (cantidadParam < 5) {
+        return "El valor a depositar debe ser mayor a $5.00"
+      } else {
+        this.cantidad += cantidadParam;
+        return `Se ha depositado correctamente $${cantidadParam}`;    
+      }
+    }
+  }
+
+  retirar(valor: number): string{
+    if (valor < 0){
+      return "El monto a retirar no puede ser negativo";
+    } else{
+      if (valor > this.cantidad){
+        return "No hay suficiente saldo en tu cuenta";
+      } else if (valor <= 5) {
+        return "El valor a retirar debe ser mayor a $5.00";
+      }
+       else  {
+        this.cantidad -= valor;
+        return `Se ha retirado correctamente $${valor} \n Saldo actual: $${this.cantidad}`;
+      }
+    } 
+  }
+
+  imprimirDator(): string{
+    return `Nombre: ${this.nombre} \n
+            Tipo de Cuenta: ${this.tipoDeCuenta} \n
+            Numero de cuenta: ${this.numeroDeCuenta} \n
+            Saldo actual: $${this.cantidad}`;
+  }
+
+}
+
+let cliente = new Cuenta("Luis", 1000, "Ahorros", 123456789);
+console.log(cliente.imprimirDator());
+console.log(cliente.depositar(0));
+console.log(cliente.retirar(0));
+console.log(cliente.imprimirDator());
 
 
 // EJERCICO 5
